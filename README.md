@@ -11,7 +11,7 @@ Because Qt framework seems a powerful and interesting framework, so I want to le
 PyQt4.x
 
 ## Tested on
-`Python2.7` & `python3.5`
+`Python2.x` & `python3.x`
 
 ## Usage
 ```bash
