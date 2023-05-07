@@ -1,0 +1,32 @@
+name: Auto Commit
+
+on:
+  schedule:
+    - cron: '*/5 * * * *' # Auto commit every minute
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Git user
+      run: |
+        git config --global user.name "${{ secrets.USER_NAME }}"
+        git config --global user.email "${{ secrets.EMAIL_ADDRESS }}"
+
+    - name: Add changes
+      run: |
+        echo "Auto commit" >> README.md
+        git add README.md
+
+    - name: Commit changes
+      run: |
+        git commit -m "Auto commit $(date -u)"
+        
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
