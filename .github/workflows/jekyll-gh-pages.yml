@@ -12,18 +12,6 @@ on:
   schedule:
     - cron: "*/5 * * * *"
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   # Build job
   build:
@@ -57,24 +45,24 @@ jobs:
   auto-commit:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Set up Git user
-      run: |
-        git config --global user.name "${{ secrets.USER_NAME }}"
-        git config --global user.email "${{ secrets.EMAIL_ADDRESS }}"
+      - name: Set up Git user
+        run: |
+          git config --global user.name "${{ secrets.USER_NAME }}"
+          git config --global user.email "${{ secrets.EMAIL_ADDRESS }}"
 
-    - name: Add changes
-      run: |
-        echo "Auto commit" >> README.md
-        git add README.md
+      - name: Add changes
+        run: |
+          echo "Auto commit" >> README.md
+          git add README.md
 
-    - name: Commit changes
-      run: |
-        git commit -m "Auto commit $(date -u)"
+      - name: Commit changes
+        run: |
+          git commit -m "Auto commit $(date -u)"
         
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.G
