@@ -21,3 +21,4 @@ When you run ftp_server.py you may need permission because the ftp server port d
 
 ## Platform
 Currently can only run on Linux like OS e.g Ubuntu, Mac OSX etc.
+Auto commit
